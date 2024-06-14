@@ -88,7 +88,12 @@ namespace _GameData.Scripts
             }
 
             var time = mostClosedDistance * twoBlockBetweenMoveTime;
-          
+
+            // while (alpha)
+            // {
+            //     
+            // }
+            
             
             while (alpha < 1.0f)
             {

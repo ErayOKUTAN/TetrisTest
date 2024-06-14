@@ -497,6 +497,8 @@ MonoBehaviour:
   currentLayer:
     serializedVersion: 2
     m_Bits: 512
+  hooks: []
+  activeHooks: []
 --- !u!114 &5035189725404796071
 MonoBehaviour:
   m_ObjectHideFlags: 0

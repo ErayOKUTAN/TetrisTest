@@ -19,6 +19,10 @@ namespace _GameData.Scripts
         public LayerMask currentLayer;
         public Action OnBlockDestroy;
 
+        [SerializeField] private List<Transform> hooks;
+
+
+        public List<Transform> activeHooks;
         public void Init(ColorData data)
         {
             meshRenderer.material = data.material;
@@ -74,6 +78,7 @@ namespace _GameData.Scripts
                 {
                     // Debug.Log("Right " + colorsType +" " + block.colorsType,gameObject);
                     // Debug.DrawRay(transform.position, transform.right * hitInfoRight.distance, Color.yellow,10f);
+                    activeHooks.Add(hooks[0]);
                     mergedData.blocks.Add(block);
                 }
             }
@@ -85,6 +90,7 @@ namespace _GameData.Scripts
                 {
                     // Debug.Log("Left " + colorsType +" " + block.colorsType,gameObject);
                     // Debug.DrawRay(transform.position, -transform.right * hitInfoLeft.distance, Color.yellow,10f);
+                    activeHooks.Add(hooks[1]);
                     mergedData.blocks.Add(block);
                 }
             }
@@ -97,6 +103,7 @@ namespace _GameData.Scripts
                 {
                     // Debug.Log("Up " + colorsType +" " + block.colorsType,gameObject);
                     // Debug.DrawRay(transform.position, transform.up * hitInfoUp.distance, Color.yellow,10f);
+                    activeHooks.Add(hooks[2]);
                     mergedData.blocks.Add(block);
                 }
             }
@@ -108,6 +115,7 @@ namespace _GameData.Scripts
                 {
                     // Debug.Log("Down " + colorsType +" " + block.colorsType,gameObject);
                     // Debug.DrawRay(transform.position, -transform.up * hitInfoDown.distance, Color.yellow,10f);
+                    activeHooks.Add(hooks[3]);
                     mergedData.blocks.Add(block);
                 }
             }

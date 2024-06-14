@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _GameData.Scripts
@@ -33,10 +34,7 @@ namespace _GameData.Scripts
                 instantiatePos.x = startPos.x;
             }
             _gridUnitsController = new GridUnitsController(gridUnitsArray);
+            _gridUnitsController.CheckGridUnitNeighbours();
         }
-        
-             
-     
-
     }
 }

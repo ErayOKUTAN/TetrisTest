@@ -55,5 +55,13 @@ namespace _GameData.Scripts
 
             return betweenGrids;
         }
+
+        public void CheckGridUnitNeighbours()
+        {
+            foreach (var gridUnit in GridUnits)
+            {
+                gridUnit.CheckNeighbours();
+            }
+        }
     }
 }
