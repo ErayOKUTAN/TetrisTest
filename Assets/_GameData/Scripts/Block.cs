@@ -20,6 +20,7 @@ namespace _GameData.Scripts
         public Action OnBlockDestroy;
 
         [SerializeField] private List<Transform> hooks;
+        [SerializeField] private List<MeshRenderer> hooksMeshRenderers;
 
 
         public List<Transform> activeHooks;
@@ -27,6 +28,10 @@ namespace _GameData.Scripts
         {
             meshRenderer.material = data.material;
             colorsType = data.colorsType;
+            foreach (var meshRenderer in hooksMeshRenderers)
+            {
+                meshRenderer.material = data.material;
+            }
             MergeController.OnTryToFindMergedData += OnTryToFindMergedDataHandler;
         }
 

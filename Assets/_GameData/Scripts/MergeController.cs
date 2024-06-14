@@ -80,7 +80,7 @@ namespace _GameData.Scripts
                 for (int i = 1; i < moveBlocks.Length; i++)
                 {
                     var distance = Vector3.Distance(data.blocks[0].transform.position, moveBlocks[i].transform.position);
-                    if (mostClosedDistance > distance)
+                    if (mostClosedDistance < distance)
                     {
                         mostClosedDistance = distance;
                     }
@@ -89,15 +89,45 @@ namespace _GameData.Scripts
 
             var time = mostClosedDistance * twoBlockBetweenMoveTime;
 
-            // while (alpha)
-            // {
-            //     
-            // }
             
+            var distances = new List<float>();
+
+            foreach (var blocksPos in moveBlocksPos)
+            {
+                distances.Add(Vector3.Distance(data.blocks[0].transform.position, blocksPos));
+                print(Vector3.Distance(data.blocks[0].transform.position, blocksPos));
+            }
+            
+            alpha = 0f;
+            
+            while (alpha < 1.0f)
+            {
+                alpha = Mathf.Min(1.0f, alpha + Time.deltaTime / .35f);
+                print(alpha);
+                for (int i = 0; i < data.blocks[0].activeHooks.Count; i++)
+                {
+                    var targetXScale = Mathf.Lerp(0, distances[i], alpha);
+                    var scale = data.blocks[0].activeHooks[i].localScale;
+                    scale.x = targetXScale;
+                    data.blocks[0].activeHooks[i].localScale = scale;
+                }
+                yield return new WaitForEndOfFrame();
+            }
+
+            alpha = 0f;
             
             while (alpha < 1.0f)
             {
                 alpha = Mathf.Min(1.0f, alpha + Time.deltaTime / time);
+                
+                for (int i = 0; i < data.blocks[0].activeHooks.Count; i++)
+                {
+                    var targetXScale = Mathf.Lerp(distances[i], 0, alpha);
+                    var scale = data.blocks[0].activeHooks[i].localScale;
+                    scale.x = targetXScale;
+                    data.blocks[0].activeHooks[i].localScale = scale;
+                }
+                
                 for (int i = 0; i < moveBlocks.Length; i++)
                 {
                     var moveLerp = Vector3.Lerp(moveBlocksPos[i],data.blocks[0].transform.position  , alpha);
