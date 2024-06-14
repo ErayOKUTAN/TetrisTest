@@ -28,7 +28,7 @@ namespace _GameData.Scripts
             var blockTemplate = Instantiate(blockTemplates[Random.Range(0, blockTemplates.Count)],position);
             
             blockTemplate.Init(position,this);
-            blockTemplate.transform.localScale = Vector3.one * .8f; 
+            blockTemplate.transform.localScale = Vector3.one; 
             List<bool> selectedColorIndex = new List<bool>();
             for (int j = 0; j < colorDatas.Count; j++)
             {

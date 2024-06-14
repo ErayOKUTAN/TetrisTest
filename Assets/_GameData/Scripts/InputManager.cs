@@ -46,7 +46,9 @@ namespace _GameData.Scripts
                     if (Physics.Raycast(ray, out var hit , 100, dragPanelLayer))
                     {
                         var holdingBlocksTransform = _holdingBlocks.transform;
-                        holdingBlocksTransform.position = Vector3.Lerp(holdingBlocksTransform.position, hit.point, Time.deltaTime * 12);
+                        var pos = hit.point;
+                        pos.z -= 1.5f;
+                        holdingBlocksTransform.position = Vector3.Lerp(holdingBlocksTransform.position, pos, Time.deltaTime * 12);
                     }
                 }
             }

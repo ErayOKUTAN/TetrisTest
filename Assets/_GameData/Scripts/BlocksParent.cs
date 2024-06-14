@@ -20,7 +20,7 @@ namespace _GameData.Scripts
         
         public void ReturnToSlot()
         {
-            transform.localScale = Vector3.one * .8f; 
+            transform.localScale = Vector3.one; 
             transform.SetParent(createdPos);
             transform.localPosition = Vector3.zero;
         }

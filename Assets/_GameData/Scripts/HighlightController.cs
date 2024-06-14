@@ -40,8 +40,9 @@ namespace _GameData.Scripts
             var firstIndex = willBeCheckedDirections.Count - 1;
             for (int i = firstIndex;  i > -1 ; i--)
             {
-                if (Physics.Raycast(transform.position, willBeCheckedDirections[i], out var hitInfo, 0.56f, blockLayer))
+                if (Physics.Raycast(transform.position, willBeCheckedDirections[i], out var hitInfo, 0.62f, blockLayer))
                 {
+                    
                     willBeCheckedDirections.Remove(willBeCheckedDirections[i]);
                 }
             }
@@ -59,7 +60,7 @@ namespace _GameData.Scripts
             {
                 if (Physics.Raycast(gridUnit.transform.position, direction, out var blockHitInfo, 50, blockLayer) && blockHitInfo.transform.TryGetComponent(out Block block) )
                 {
-                    if (block.ColorsType == _block.ColorsType)
+                    if (block.ColorsType == _block.ColorsType && !block.IsOnSlot)
                     {
                         _secondGridUnits.Add(block.CurrentGridUnit);
                         HighlightManager.OnHighlightGrids.Invoke(gridUnit,block.CurrentGridUnit,block.ColorsType);
